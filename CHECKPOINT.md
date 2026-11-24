@@ -1,7 +1,6 @@
 # AI_Learning checkpoint
 
-**Tanggal:** 2026-11-22 (Asia/Bangkok)  
-**Status repository:** checkpoint awal; sebelumnya tidak ada file proyek atau commit.  
+**Tanggal pembaruan:** 2026-11-24 (Asia/Bangkok) · **Status repository:** checkpoint riset video dan setup tool lokal; branch `main` terhubung ke `origin/main`.
 **Sumber:** 19 Facebook Reels yang diberikan pengguna. Catatan ini merangkum caption dan pengamatan yang tersedia; bukan transkrip lengkap atau implementasi teknik video.
 
 ## Uji ulang media yang semula gagal
@@ -43,3 +42,26 @@ Tingkat keyakinan di bawah mengikuti sumber yang tersedia: umumnya caption/metad
 - Sejumlah butir di indeks hanya berdasar caption/metadata lama. Angka dan klaim performa harus diperiksa pada video atau sumber proyek aslinya sebelum dijadikan persyaratan implementasi.
 - Repository sebelumnya kosong. Belum ada aplikasi atau kode yang dapat dimodifikasi untuk menduplikasi teknik-teknik tersebut.
 - Langkah berikutnya: pilih Reel/teknik dan hasil yang ingin diwujudkan, verifikasi tutorial lengkap dan repo/tool yang dirujuk, lalu buat spesifikasi implementasi sebelum perubahan kode.
+
+## Progress pemasangan tool lokal (2026-11-24)
+
+### Codebase Memory MCP
+
+- Repo sumber: [octacity-org/codebase-memory-mcp](https://github.com/octacity-org/codebase-memory-mcp), rilis yang dipasang **2.0.1**.
+- Binary Windows x64 dipasang di `%LOCALAPPDATA%\Programs\codebase-memory-mcp\codebase-memory-mcp.exe`; SHA-256 arsip diperiksa sebelum pemasangan.
+- Terdaftar di konfigurasi Claude Desktop aktif sebagai `codebase-memory-mcp`; status UI Claude Desktop terverifikasi **Running**.
+
+### Free Claude Code dan penghemat token
+
+- Repo sumber: [Alishahryar1/free-claude-code](https://github.com/Alishahryar1/free-claude-code). Dipasang **Free Claude Code 6.19.53**, **Claude Code CLI 2.1.331**, dan `uv 0.13.9`.
+- **RTK 0.44.2** dipasang. Hook global didaftarkan untuk Claude Code; konfigurasi RTK juga diterapkan pada Codex. File RTK membuat `rtk gain` belum memiliki statistik pemakaian, dan pembacaan DB statistik gagal karena `Access is denied`.
+- **Headroom 0.40.0** dipasang dan didaftarkan sebagai MCP untuk Claude Code serta Codex. Entri MCP lokal juga ditambahkan manual ke Claude Desktop dengan `headroom.exe mcp serve`; status UI terverifikasi **Running**.
+- Konfigurasi Claude Desktop mempertahankan MCP Codebase Memory. Backup sebelum perubahan Headroom tersedia sebagai `claude_desktop_config.json.backup-headroom-20261124` di profil data Claude aktif.
+- Hook/RTK otomatis memangkas keluaran shell pada Claude Code CLI. Headroom juga menyediakan alat MCP. Integrasi model Free Claude Code adalah jalur provider untuk CLI/IDE yang didukung; ia **tidak mengganti model Claude Desktop**. Di Desktop, Headroom tersedia sebagai MCP lokal.
+
+### Status provider dan biaya
+
+- Akun yang terlihat di Claude Desktop berstatus **Free**. Tidak ada langganan berbayar atau API key provider yang dibuat dalam proses pemasangan.
+- Belum ada provider model yang disiapkan di Free Claude Code; server proxy tidak berjalan. Penggunaan CLI melalui FCC belum siap sampai provider dipilih dan dihubungkan.
+- Klaim “gratis” berlaku untuk binary/open-source tool dan tier gratis provider. Kuota/ketentuan setiap provider berbeda, dan penggunaan key berbayar dapat menimbulkan biaya provider. Belum ada kredensial atau penggunaan provider melalui FCC pada checkpoint ini.
+- Pemasangan diverifikasi melalui versi binary, output installer, dan status **Running** di UI Claude Desktop. Tidak ada kode aplikasi yang ditambahkan ke repo ini.
